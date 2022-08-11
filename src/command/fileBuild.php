@@ -25,21 +25,13 @@ class fileBuild extends Make
     private $logic = 'logic';
     private $validate = 'validate';
 
-    protected $appList = [
-        'admin' => [
-            'filename' => 'AdminBaseController',
-            'namespace' => 'app\admin\controller\AdminBaseController',
-        ],
-        'api' => [
-            'filename' => 'ApiBaseController',
-            'namespace' => 'app\api\controller\ApiBaseController',
-        ],
-    ];
+    protected $appList = [];
 
     protected function configure()
     {
+        $this->appList = config('file_build');
         // 指令配置
-        $this->setName('make:build')
+        $this->setName('make:file-build')
             ->addOption('namespace', 's', Option::VALUE_REQUIRED, '控制器所在命名空间')
             ->addOption("model", 'm', Option::VALUE_REQUIRED, '请输入数据库预设模型名称')
             ->addOption("replace", 'r', Option::VALUE_OPTIONAL, '覆盖已生成文件默认:false')
@@ -173,10 +165,10 @@ class fileBuild extends Make
     protected function getStub(): array
     {
         return [
-            'controller' => "../".__DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . 'controller.stub',
-            'model' => "../".__DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . 'model.stub',
-            'logic' => "../".__DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . 'logic.stub',
-            'validate' => "../".__DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . 'validate.stub',
+            'controller' => str_replace('command'.DIRECTORY_SEPARATOR,'',__DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . 'controller.stub'),
+            'model' => str_replace('command'.DIRECTORY_SEPARATOR,'',__DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . 'model.stub'),
+            'logic' => str_replace('command'.DIRECTORY_SEPARATOR,'',__DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . 'logic.stub'),
+            'validate' => str_replace('command'.DIRECTORY_SEPARATOR,'',__DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . 'validate.stub')
         ];
     }
 
