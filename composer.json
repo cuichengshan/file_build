@@ -1,0 +1,29 @@
+{
+    "name": "cnitker/file_build",
+    "description": "thinkphp6 controller model logic validate auto file build",
+    "license": "Apache-2.0",
+    "autoload": {
+        "psr-4": {
+            "cnitker\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lirong",
+            "email": "lr@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "extra": {
+        "think": {
+            "config": {
+                "file_build": "src/config.php"
+            },
+            "services": [
+                "cnitker\\Service"
+            ]
+        }
+    }
+}
