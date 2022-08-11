@@ -1,4 +1,5 @@
 <?php
+//此处配置各应用基类控制器
 return [
     'admin' => [
         'filename' => 'AdminBaseController',
